@@ -1,0 +1,17 @@
+{
+  "name": "palavrete",
+  "version": "1.0.0",
+  "description": "Word game to study",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "start:dev": "nodemon index.js"
+  },
+  "author": "Daniel Santos",
+  "license": "ISC",
+  "dependencies": {
+    "eslint": "^8.15.0",
+    "node": "^17.7.2",
+    "nodemon": "^2.0.16"
+  }
+}
