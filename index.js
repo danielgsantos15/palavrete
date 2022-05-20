@@ -1,23 +1,37 @@
-const wordsBase = ["teste" , "pasta" , "sexta" , "viola" , "pasto" , "tripa"]
-const secretWord = wordsBase[Math.floor(Math.random() * wordsBase.length)]
+const wordBase = ["teste" , "pasta" , "sexta" , "viola" , "pasto" , "tripa", "noite" , "velho" , "placa" , "mosto" , "terra" , "garra" , "marra"]
+const secretWord = wordBase[Math.floor(Math.random() * wordBase.length)]
 
+// secret word generated automatcally
 console.log("palavra secreta:" , secretWord)
 
-let tentativas = () => {
-  let tentativa = wordsBase[Math.floor(Math.random() * wordsBase.length)]
-  console.log(tentativa)
-  return tentativa
+// victory message
+let won = (attempt) => {
+  console.log(`parabéns! você acertou! ${attempt}`)
 }
 
-let venceu = () => {
-  console.log("Você acertou!")
+// compare with secret word and show informations of written word
+let tryes = (attempt) => {
+  console.log(`${attempt} errou, tente novamente`)
 }
 
+// check written word in database
+// let dataCheck = (attempt) => {
+//   return wordBase.includes(attempt)
+// }
 
-for (let index = 5; index > 0; index--) {
-  if (tentativas() == secretWord) {
-    venceu()
-    break
-  } else console.log(`Você errou, restam ${index} tentativas`)
+let wordCompare = (attempt) => {
+ console.log(`A palavra ${attempt} não existe`)
 }
 
+// receive written word for the player in the frontend
+let writtenWord = () => {
+  // let attempt = "poker"
+  let attempt = wordBase[Math.floor(Math.random() * wordBase.length)]
+  // check if written word exists in database
+  if (wordBase.includes(attempt) == true) {
+      if (attempt == secretWord) {
+        return won(attempt)
+      } return tryes(attempt)
+    } wordCompare(attempt)
+} 
+writtenWord()
