@@ -2,12 +2,11 @@ const wordBase = ["teste" , "pasta" , "sexta" , "viola"]
 const secretWord = wordBase[Math.floor(Math.random() * wordBase.length)]
 const secretArray = Array.from(secretWord)
 
-// secret word generated automatcally
-console.log("palavra secreta:" , secretWord)
-
-// compare letter for letter of arrays
 
 // * @params
+
+// secret word generated automatcally
+console.log("palavra secreta:" , secretWord)
 
 let greenCheck = (attempt) => {
   if (attempt != secretWord) {
@@ -46,9 +45,11 @@ let greenCheck = (attempt) => {
   }else console.log("#")
 }
 
+
 // compare with secret word and show informations of written word
 let tryes = (attempt) => {
   console.log(`${attempt} errou, tente novamente`)
+  
 }
 
 // check written word in database
@@ -72,8 +73,8 @@ let won = (attempt) => {
 
 // receive written word for the player in the frontend
 let writtenWord = () => {
-  // let attempt = "poker"
-  let attempt = wordBase[Math.floor(Math.random() * wordBase.length)]
+  let attempt = document.getElementById("wroteWord").value
+  // let attempt = wordBase[Math.floor(Math.random() * wordBase.length)]
   dataCheck(attempt)
 } 
 writtenWord()
