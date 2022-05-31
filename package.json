@@ -5,13 +5,14 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "start:dev": "nodemon index.js"
+    "start:dev": "nodemon ./src/start.js"
   },
   "author": "Daniel Santos",
   "license": "ISC",
   "dependencies": {
     "eslint": "^8.15.0",
     "node": "^17.7.2",
-    "nodemon": "^2.0.16"
+    "nodemon": "^2.0.16",
+    "uuid": "^8.3.2"
   }
 }
