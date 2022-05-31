@@ -1,6 +1,4 @@
 
-const secretWord = wordBase[Math.floor(Math.random() * wordBase.length)]
-const secretArray = Array.from(secretWord)
 
 const tiles = document.querySelector(".tile-container");
 const rows = 6;
@@ -13,84 +11,6 @@ let currentColumn = 0
 let attempt = []
 
 const guesses = [];
-
-// * @params
-
-// secret word generated automatcally
-console.log("secret word:" , secretWord)
-
-let greenCheck = (attempt) => {
-  if (attempt != secretWord) {
-    tryes(attempt)
-  } else won(attempt)
-  
-  let arrTryed = Array.from(attempt)
-  if (secretArray[0] == arrTryed[0]) {
-    console.log(arrTryed[0])
-    rigthLetter(arrTryed)
-  } else if (secretArray.includes(arrTryed[0]) == true) {
-    console.log(arrTryed[0].toUpperCase())
-  }else console.log("#")
-
-  if (secretArray[1] == arrTryed[1]) {
-    console.log(arrTryed[1])
-    rigthLetter(arrTryed)
-  } else if (secretArray.includes(arrTryed[1]) == true) {
-    console.log(arrTryed[1].toUpperCase())
-  } else console.log("#")
-
-  if (secretArray[2] == arrTryed[2]) {
-    console.log(arrTryed[2])
-    rigthLetter(arrTryed)
-  } else if (secretArray.includes(arrTryed[2]) == true) {
-    console.log(arrTryed[2].toUpperCase())
-  }else console.log("#")
-
-  if (secretArray[3] == arrTryed[3]) {
-    console.log(arrTryed[3])
-    rigthLetter(arrTryed)
-  } else if (secretArray.includes(arrTryed[3]) == true) {
-    console.log(arrTryed[3].toUpperCase())
-  }else console.log("#")
-
-  if (secretArray[4] == arrTryed[4]) {
-    console.log(arrTryed[4])
-    rigthLetter(arrTryed)
-  } else if (secretArray.includes(arrTryed[4]) == true) {
-    console.log(arrTryed[4].toUpperCase())
-  } else console.log("#")
-}
-
-let rigthLetter = (arrTryed) => {
-  // for (let index = 0; index < attempt.length; index++) {
-  //   let letter = document.querySelector("#row0column" +index)
-  //   letter.classList.add("right")
-  // }
-
-  // const guess = attempt[currentRow]
-  if (attempt.length !== columns) {
-    return;
-  }
-  let currentColumns = document.querySelectorAll(".typing")
-  for (let index = 0; index < columns; index++) {
-    const letter = arrTryed[index];
-    if (letrecoMap[letter] === undefined) {
-      currentColumns[index].classList.add("wrong")
-    } else if (letrecoMap[letter] === index) {
-      currentColumns[index].classList.add("right")
-    } else currentColumns[index].classList.add("displaced")
-  }
-}
-
-// compare with secret word and show informations of written word
-let tryes = (attempt) => {
-  console.log(`${attempt} errou, tente novamente`)
-}
-
-// victory message
-let won = (attempt) => {
-  console.log(`parabéns! você acertou! ${attempt}`)
-}
 
 // check written word in database
 let dataCheck = (attempt) => {
