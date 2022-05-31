@@ -1,6 +1,18 @@
-const wordBase = ["teste" , "pasta" , "sexta" , "viola"]
+
 const secretWord = wordBase[Math.floor(Math.random() * wordBase.length)]
 const secretArray = Array.from(secretWord)
+
+const tiles = document.querySelector(".tile-container");
+const rows = 6;
+const columns = 5;
+let letrecoMap = {};
+
+// writing the word
+let currentRow = 0
+let currentColumn = 0
+let attempt = []
+
+const guesses = [];
 
 // * @params
 
@@ -15,40 +27,69 @@ let greenCheck = (attempt) => {
   let arrTryed = Array.from(attempt)
   if (secretArray[0] == arrTryed[0]) {
     console.log(arrTryed[0])
+    rigthLetter(arrTryed)
   } else if (secretArray.includes(arrTryed[0]) == true) {
     console.log(arrTryed[0].toUpperCase())
   }else console.log("#")
 
   if (secretArray[1] == arrTryed[1]) {
     console.log(arrTryed[1])
+    rigthLetter(arrTryed)
   } else if (secretArray.includes(arrTryed[1]) == true) {
     console.log(arrTryed[1].toUpperCase())
   } else console.log("#")
 
   if (secretArray[2] == arrTryed[2]) {
     console.log(arrTryed[2])
+    rigthLetter(arrTryed)
   } else if (secretArray.includes(arrTryed[2]) == true) {
     console.log(arrTryed[2].toUpperCase())
   }else console.log("#")
 
   if (secretArray[3] == arrTryed[3]) {
     console.log(arrTryed[3])
+    rigthLetter(arrTryed)
   } else if (secretArray.includes(arrTryed[3]) == true) {
     console.log(arrTryed[3].toUpperCase())
   }else console.log("#")
 
   if (secretArray[4] == arrTryed[4]) {
     console.log(arrTryed[4])
+    rigthLetter(arrTryed)
   } else if (secretArray.includes(arrTryed[4]) == true) {
     console.log(arrTryed[4].toUpperCase())
-  }else console.log("#")
+  } else console.log("#")
 }
 
+let rigthLetter = (arrTryed) => {
+  // for (let index = 0; index < attempt.length; index++) {
+  //   let letter = document.querySelector("#row0column" +index)
+  //   letter.classList.add("right")
+  // }
+
+  // const guess = attempt[currentRow]
+  if (attempt.length !== columns) {
+    return;
+  }
+  let currentColumns = document.querySelectorAll(".typing")
+  for (let index = 0; index < columns; index++) {
+    const letter = arrTryed[index];
+    if (letrecoMap[letter] === undefined) {
+      currentColumns[index].classList.add("wrong")
+    } else if (letrecoMap[letter] === index) {
+      currentColumns[index].classList.add("right")
+    } else currentColumns[index].classList.add("displaced")
+  }
+}
 
 // compare with secret word and show informations of written word
 let tryes = (attempt) => {
   console.log(`${attempt} errou, tente novamente`)
-  
+}
+
+// victory message
+let won = (attempt) => {
+  console.log(`parabéns! você acertou! ${attempt}`)
 }
 
 // check written word in database
@@ -65,28 +106,17 @@ let wordNotFound = (attempt) => {
  console.log(`A palavra ${attempt} não existe`)
 }
 
-// victory message
-let won = (attempt) => {
-  console.log(`parabéns! você acertou! ${attempt}`)
-}
-
 // receive written word for the player in the frontend
-let writtenWord = () => {
-  // let attempt = document.getElementById("wroteWord").value
-  let attempt = wordBase[Math.floor(Math.random() * wordBase.length)]
-  dataCheck(attempt)
-} 
+// let writtenWord = () => {
+//   // let attempt = document.getElementById("wroteWord").value
+//   let attempt = wordBase[Math.floor(Math.random() * wordBase.length)]
+//   dataCheck(attempt)
+// } 
 // writtenWord()
-
-const tiles = document.querySelector(".tile-container");
-const rows = 6;
-const columns = 5;
-let letrecoMap = {};
 
 for (let index = 0; index < secretWord.length; index++) {
   letrecoMap[secretWord[index]] = index;
 }
-const guesses = [];
 
 for (let rowIndex = 0; rowIndex < rows; rowIndex++) {
   guesses[rowIndex] = new Array(columns);
@@ -106,10 +136,6 @@ for (let rowIndex = 0; rowIndex < rows; rowIndex++) {
   tiles.append(tileRow); 
 }
 
-// writing the word
-let currentRow = 0
-let currentColumn = 0
-
 const writingWord = (key) => {
   if(currentColumn != columns){
     const currentTile = document.querySelector(
@@ -117,6 +143,7 @@ const writingWord = (key) => {
       )
       currentTile.textContent = key
       currentColumn++
+      attempt.push(key)
     } return
 }
 
@@ -136,6 +163,7 @@ const createKeyboardRow = (keys, keyboardRow) => {
     buttonElement.setAttribute("id",key)
     buttonElement.addEventListener("click", () => writingWord(key))
     keyboardRow.append(buttonElement)
+    
   });
 }
 createKeyboardRow(keyFirstRow, keyboardFirstRow)
@@ -144,8 +172,15 @@ createKeyboardRow(keyThirdRow, keyboardThirdRow)
 
 //  backspace button
 const backspaceAndEnterRow = document.querySelector("#backspaceAndEnterRow")
-const handleBackspace = () => {
-  console.log("backspace")
+const handleBackspace = (key) => {
+  if ( currentColumn === 0 ) {
+    return
+  }
+  currentColumn--
+  attempt.pop(key)
+  guesses[currentRow][currentColumn] = ""
+  const tile = document.querySelector("#row" + currentRow + "column" + currentColumn)
+  tile.textContent = ""
 }
 
 const backspaceButton = document.createElement("button")
@@ -156,7 +191,6 @@ backspaceAndEnterRow.append(backspaceButton)
 // Enter button
 const handleEnter = () => {
   if (currentColumn == columns) {
-    console.log("Enter")
     let typingRow = document.querySelectorAll(".typing")
     for (let index = 0; index < typingRow.length; index++) {
       typingRow[index].classList.remove("typing")
@@ -171,6 +205,9 @@ const handleEnter = () => {
       columnsEnable[index].classList.remove("disabled")
       columnsEnable[index].classList.add("typing")
     }
+    dataCheck(attempt.join('').toLowerCase())
+    attempt = []
+    greenCheck
   } return
 }
 
