@@ -1,5 +1,3 @@
-
-
 const tiles = document.querySelector(".tile-container");
 const rows = 6;
 const columns = 5;
@@ -9,6 +7,9 @@ let letrecoMap = {};
 let currentRow = 0
 let currentColumn = 0
 let attempt = []
+
+let secretWord = 'solto'
+let wordBase = ['fruta', 'forca', 'solto']
 
 const guesses = [];
 
@@ -28,8 +29,8 @@ let wordNotFound = (attempt) => {
 
 // receive written word for the player in the frontend
 // let writtenWord = () => {
-//   // let attempt = document.getElementById("wroteWord").value
-//   let attempt = wordBase[Math.floor(Math.random() * wordBase.length)]
+//   let attempt = document.getElementById("wroteWord").value
+//   // let attempt = wordBase[Math.floor(Math.random() * wordBase.length)]
 //   dataCheck(attempt)
 // } 
 // writtenWord()
@@ -83,9 +84,9 @@ const createKeyboardRow = (keys, keyboardRow) => {
     buttonElement.setAttribute("id",key)
     buttonElement.addEventListener("click", () => writingWord(key))
     keyboardRow.append(buttonElement)
-    
   });
 }
+
 createKeyboardRow(keyFirstRow, keyboardFirstRow)
 createKeyboardRow(keySecondRow, keyboardSecondRow)
 createKeyboardRow(keyThirdRow, keyboardThirdRow)
