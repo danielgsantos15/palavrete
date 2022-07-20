@@ -1,4 +1,4 @@
-const data = require("./data-mock")
+import data from './data-mock.js'
 
 class DatabaseManager {
   getWord() {
@@ -7,4 +7,4 @@ class DatabaseManager {
   }
 }
 
-module.exports = DatabaseManager
+export default DatabaseManager

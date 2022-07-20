@@ -19,4 +19,4 @@ class LetterValidator {
   }
 }
 
-module.exports = LetterValidator
+export default LetterValidator
