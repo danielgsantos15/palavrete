@@ -6,5 +6,9 @@ const lettervalidator = new LetterValidator(5)
 
 const secretArray = Array.from(database.getWord())
 const word = "teste"
+const wordChecked = database.checkAtDatabase(word)
 const validatedWord = lettervalidator.greenCheck(word, secretArray)
-console.log(validatedWord)
+if (!wordChecked) {
+    console.log('A palavra não existe')
+}
+else console.log(validatedWord)

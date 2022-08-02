@@ -8,24 +8,25 @@ let currentRow = 0
 let currentColumn = 0
 let attempt = []
 
-let secretWord = 'solto'
-let wordBase = ['fruta', 'forca', 'solto']
+// let secretWord = 'solto'
+// let wordBase = ['fruta', 'forca', 'solto']
 
 const guesses = [];
 
-// check written word in database
-let dataCheck = (attempt) => {
-  if (wordBase.includes(attempt) == true) {
-    if (attempt == secretWord) {
-      greenCheck(attempt)
-    } else return greenCheck(attempt)
-  } else wordNotFound(attempt)
-}
 
-// if does not found written word on database
-let wordNotFound = (attempt) => {
- console.log(`A palavra ${attempt} não existe`)
-}
+// // check written word in database
+// let dataCheck = (attempt) => {
+//   if (wordBase.includes(attempt) == true) {
+//     if (attempt == secretWord) {
+//       greenCheck(attempt)
+//     } else return greenCheck(attempt)
+//   } else wordNotFound(attempt)
+// }
+
+// // if does not found written word on database
+// let wordNotFound = (attempt) => {
+//  console.log(`A palavra ${attempt} não existe`)
+// }
 
 // receive written word for the player in the frontend
 // let writtenWord = () => {
@@ -35,6 +36,8 @@ let wordNotFound = (attempt) => {
 // } 
 // writtenWord()
 
+
+// game table
 for (let index = 0; index < secretWord.length; index++) {
   letrecoMap[secretWord[index]] = index;
 }
@@ -126,9 +129,10 @@ const handleEnter = () => {
       columnsEnable[index].classList.remove("disabled")
       columnsEnable[index].classList.add("typing")
     }
-    dataCheck(attempt.join('').toLowerCase())
+    // dataCheck(attempt.join('').toLowerCase())
+    // greenCheck
+    console.log(attempt)
     attempt = []
-    greenCheck
   } return
 }
 
@@ -136,3 +140,5 @@ const enterButton = document.createElement("button")
 enterButton.addEventListener("click", handleEnter)
 enterButton.textContent = "enter"
 backspaceAndEnterRow.append(enterButton)
+
+module.exports = handleEnter
