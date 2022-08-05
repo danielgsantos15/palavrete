@@ -4,11 +4,20 @@ import LetterValidator from "./validator/letter.validator.js"
 const database = new DatabaseManager()
 const lettervalidator = new LetterValidator(5)
 
-const secretArray = Array.from(database.getWord())
-const word = "teste"
-const wordChecked = database.checkAtDatabase(word)
-const validatedWord = lettervalidator.greenCheck(word, secretArray)
-if (!wordChecked) {
-    console.log('A palavra não existe')
+export class Start {
+    constructor(word) {
+        this.word = word
+    }
+    init () {
+        const secretArray = Array.from(database.getWord())
+        return secretArray
+    }
+    wordCheck () {
+        const wordChecked = database.checkAtDatabase(this.word)
+        if (!wordChecked) {
+            return 'A palavra não existe'
+        }
+        return this.validatedWord(secretArray)
+    }
 }
-else console.log(validatedWord)
+
