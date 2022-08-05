@@ -1,12 +1,10 @@
 import express from 'express'
 
 const app = express()
+app.use(express.static('public'));
 
-app.use(express.static(__dirname + '../public'));
-
-// app.get('/', (req, res) => {
-//   // res.send('teste')
-//   res.status(200).render('../public/index.ejs')
-// })
+app.get('/', (req, res) => {
+  
+})
 
 export default app
