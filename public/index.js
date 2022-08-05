@@ -56,7 +56,7 @@ const showKeyboard = () => {
       buttonElement.setAttribute("id", key)
       buttonElement.addEventListener("click", () => {
         writingWord(key)
-        
+        doRequests({ url: '/word' })
       })
       keyboardRow.append(buttonElement)
     });
@@ -113,3 +113,15 @@ const showEnterButton = () => {
   backspaceAndEnterRow.append(enterButton)
 }
 showEnterButton()
+
+const doRequests = (request) => {
+  const baseUrl = 'http://127.0.0.1:5500' + request.url
+  fetch(url)
+    .then(response => console.log('Response', response))
+    .catch((error) => console.log(error))
+}
+doRequests({
+  method: 'POST',
+  data: {},
+  url: '/word'
+})
