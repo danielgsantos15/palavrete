@@ -4,7 +4,8 @@ const app = express()
 app.use(express.static('public'));
 
 app.get('/word', (req, res) => {
-  console.log(req.body)
+  console.log('banana')
+  res.send({'data': 'attempt'})
 })
 
 export default app
