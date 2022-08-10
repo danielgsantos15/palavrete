@@ -4,15 +4,15 @@ import LetterValidator from "./validator/letter.validator.js"
 const database = new DatabaseManager()
 const lettervalidator = new LetterValidator(5)
 
-export class Start {
+export default class StartPalavrete {
     constructor(word) {
         this.word = word
     }
-    init () {
+    getSecretWordFromDatabase () {
         const secretArray = Array.from(database.getWord())
         return secretArray
     }
-    wordCheck () {
+    hasClientWordOnDatabase () {
         const wordChecked = database.checkAtDatabase(this.word)
         if (!wordChecked) {
             return 'A palavra não existe'
@@ -20,4 +20,3 @@ export class Start {
         return this.validatedWord(secretArray)
     }
 }
-
