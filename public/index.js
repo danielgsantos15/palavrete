@@ -40,6 +40,7 @@ const writingWord = (key) => {
   } return
 }
 
+// Keyboard
 const showKeyboard = () => {
   const keyboardFirstRow = document.querySelector("#keyboardFirstRow")
   const keyboardSecondRow = document.querySelector("#keyboardSecondRow")
@@ -56,7 +57,6 @@ const showKeyboard = () => {
       buttonElement.setAttribute("id", key)
       buttonElement.addEventListener("click", () => {
         writingWord(key)
-        doRequests({ url: '/word' })
       })
       keyboardRow.append(buttonElement)
     });
@@ -68,6 +68,7 @@ const showKeyboard = () => {
 }
 showKeyboard()
 
+// Backspace Button
 const showBackspaceButton = () => {
   const handleBackspace = (key) => {
     if (currentColumn === 0) {
@@ -87,6 +88,7 @@ const showBackspaceButton = () => {
 }
 showBackspaceButton()
 
+// Enter Button
 const showEnterButton = () => {
   const handleEnter = () => {
     if (currentColumn == columns) {
@@ -104,9 +106,13 @@ const showEnterButton = () => {
         columnsEnable[index].classList.remove("disabled")
         columnsEnable[index].classList.add("typing")
       }
+      doRequests({ 
+        'method': 'POST',
+        resource: '/word',
+        data: attempt
+      })
     } return
   }
-
   const enterButton = document.createElement("button")
   enterButton.addEventListener("click", handleEnter)
   enterButton.textContent = "enter"
@@ -114,14 +120,16 @@ const showEnterButton = () => {
 }
 showEnterButton()
 
+// Requests
 const doRequests = (request) => {
-  const baseUrl = 'http://127.0.0.1:5500' + request.url
+  const url = `http://localhost:3000${request.resource}`
   fetch(url)
     .then(response => console.log('Response', response))
     .catch((error) => console.log(error))
 }
-doRequests({
-  method: 'POST',
-  data: {},
-  url: '/word'
-})
+
+// doRequests({
+//   method: 'POST',
+//   data: {},
+//   resource: '/word'
+// })
