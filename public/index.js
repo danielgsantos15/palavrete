@@ -90,7 +90,7 @@ showBackspaceButton()
 
 // Enter Button
 const showEnterButton = () => {
-  const handleEnter = () => {
+  const handleEnter = async () => {
     if (currentColumn == columns) {
       let typingRow = document.querySelectorAll(".typing")
       for (let index = 0; index < typingRow.length; index++) {
@@ -106,11 +106,12 @@ const showEnterButton = () => {
         columnsEnable[index].classList.remove("disabled")
         columnsEnable[index].classList.add("typing")
       }
-      doRequests({ 
+      const data = await doRequests({ 
         'method': 'POST',
         resource: '/word',
         data: attempt
       })
+      console.log(data.data)
     } return
   }
   const enterButton = document.createElement("button")
@@ -121,11 +122,21 @@ const showEnterButton = () => {
 showEnterButton()
 
 // Requests
-const doRequests = (request) => {
-  const url = `http://localhost:3000${request.resource}`
-  fetch(url)
-    .then(response => console.log('Response', response))
-    .catch((error) => console.log(error))
+const doRequests = async (request) => {
+  try {
+    const data = {
+      word: request.data
+    }
+    const url = `http://localhost:3000${request.resource}`
+    const response = await fetch(url, {
+      method: request.method,
+      body: JSON.stringify(data),
+      headers: {"Content-type": "application/json; charset=UTF-8"}
+    })
+    return response.json()  
+  } catch (error) {
+    console.log(error)
+  }
 }
 
 // doRequests({
