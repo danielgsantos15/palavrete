@@ -2,18 +2,17 @@ class LetterValidator {
   constructor(columns) {
     this.columns = columns
   }
-  greenCheck(word, secretArray) {
+  compareWordsToClassifyTheLetterPosition(clientArrayWord, secretArray) {
     let validatedWord = []
-    let wordSplited = Array.from(word)
     for (let index = 0; index < this.columns; index++) {
-      if (secretArray[index] == wordSplited[index]) {
-        validatedWord.push({ letter: wordSplited[index], classList: 'right' })
+      if (secretArray[index] == clientArrayWord[index]) {
+        validatedWord.push({ letter: clientArrayWord[index], classList: 'right' })
         continue
-      } else if (secretArray.includes(wordSplited[index])) {
-        validatedWord.push({ letter: wordSplited[index], classList: 'displaced' })
+      } else if (secretArray.includes(clientArrayWord[index])) {
+        validatedWord.push({ letter: clientArrayWord[index], classList: 'displaced' })
         continue
       }
-      validatedWord.push({ letter: wordSplited[index], classList: 'wrong' })
+      validatedWord.push({ letter: clientArrayWord[index], classList: 'wrong' })
     }
     return validatedWord
   }
