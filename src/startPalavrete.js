@@ -1,8 +1,6 @@
 import DatabaseManager from "./db/database.js"
-import LetterValidator from "./validator/letter.validator.js"
 
 const database = new DatabaseManager()
-const lettervalidator = new LetterValidator(5)
 
 export default class StartPalavrete {
     constructor(word) {

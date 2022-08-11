@@ -1,5 +1,4 @@
 import express from 'express'
-import { validate } from 'uuid'
 import StartPalavrete from './startPalavrete.js'
 import LetterValidator from './validator/letter.validator.js'
 
