@@ -11,4 +11,3 @@ showTable()
 showKeyboard()
 showBackspaceButton()
 showEnterButton()
-//  Mostrar o botão de enter na tela
