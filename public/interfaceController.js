@@ -1,21 +1,35 @@
 const showTable = () => {
   for (let rowIndex = 0; rowIndex < rows; rowIndex++) {
-    guesses[rowIndex] = new Array(columns);
-    const tileRow = document.createElement("div");
-    tileRow.setAttribute("id", "row" + rowIndex);
-    tileRow.setAttribute("class", "tile-row");
+    guesses[rowIndex] = new Array(columns)
+    
+    const tileRow = document.createElement("div")
+    tileRow.setAttribute("id", `row${rowIndex}`)
+    tileRow.setAttribute("class", "tile-row")
+    
     for (let columnIndex = 0; columnIndex < columns; columnIndex++) {
-      const tileColumn = document.createElement("div");
-      tileColumn.setAttribute("id", "row" + rowIndex + "column" + columnIndex);
-      tileColumn.setAttribute(
-        "class",
-        rowIndex === 0 ? "tile-column typing" : "tile-column disabled"
-      );
-      tileRow.append(tileColumn);
-      guesses[rowIndex][columnIndex] = "";
+      const tileColumn = document.createElement("div")
+      const rowAndColumnId = `row${rowIndex}column${columnIndex}`
+      const rowAndColumnClass = rowIndex === 0 ? "tile-column typing" : "tile-column disabled"
+      
+      tileColumn.setAttribute("id", rowAndColumnId)
+      tileColumn.setAttribute("class", rowAndColumnClass)
+      tileRow.append(tileColumn)
+      guesses[rowIndex][columnIndex] = ""
     }
-    tiles.append(tileRow);
+    tiles.append(tileRow)
   }
+}
+
+const showWordColor = (validatedWord) => {
+  let index = 0
+  const actualRow = document.getElementById(`row0`)
+  console.log(actualRow)
+  validatedWord.map(element => {
+    const actualColumn = document.getElementById(`row0column${index}`)
+    // console.log(actualColumn)
+    actualColumn.className += ` ${element.classList}`
+    index++
+  })
 }
 
 // Keyboard
@@ -37,7 +51,7 @@ const showKeyboard = () => {
         writingWord(key)
       })
       keyboardRow.append(buttonElement)
-    });
+    })
   }
 
   createKeyboardRow(keyFirstRow, keyboardFirstRow)
