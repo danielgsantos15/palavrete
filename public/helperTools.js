@@ -23,3 +23,15 @@ const changeTheSelectedRow = (tipoDeSeletor, elementDOMToWork, actualStatus, sta
     variavel[index].classList.add(statusToChange)
   }
 }
+
+const clearCurrentArrayWord = () => {
+  attempt = []
+}
+
+const moveToNextRow = () => {
+  if (currentRow == 5) {
+    document.getElementById('enterButton').disabled = true
+    return
+  }  
+  currentRow++
+}
