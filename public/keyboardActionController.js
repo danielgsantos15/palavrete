@@ -28,6 +28,7 @@ const showBackspaceButton = () => {
   backspaceAndEnterRow.append(backspaceButton)
 }
 
+let index = 0
 const handleEnter = async () => {
   if (currentColumn != columns) {
     return
@@ -35,18 +36,21 @@ const handleEnter = async () => {
 
   changeTheSelectedRow(".typing", document, "typing", "disabled")
   currentColumn = 0
-  currentRow++
+  moveToNextRow()
 
   const currentDesableRow = document.querySelector("#row" + currentRow)
   changeTheSelectedRow(".tile-column", currentDesableRow, "disabled", "typing")
 
   const data = await doRequests({ 'method': 'POST', resource: '/word', data: attempt })
-  showWordColor(data)
+  clearCurrentArrayWord()
+  showWordColor(data, index)
+  index++
 }
 
 // Enter Button
 const showEnterButton = () => {
   const enterButton = document.createElement("button")
+  enterButton.setAttribute("id", "enterButton")
   enterButton.textContent = "enter"
   enterButton.addEventListener("click", handleEnter)
   backspaceAndEnterRow.append(enterButton)
