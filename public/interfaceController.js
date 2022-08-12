@@ -20,13 +20,11 @@ const showTable = () => {
   }
 }
 
-const showWordColor = (validatedWord) => {
+const showWordColor = (validatedWord, indexRow) => {
   let index = 0
-  const actualRow = document.getElementById(`row0`)
-  console.log(actualRow)
+  document.getElementById(`row${indexRow}`)
   validatedWord.map(element => {
-    const actualColumn = document.getElementById(`row0column${index}`)
-    // console.log(actualColumn)
+    const actualColumn = document.getElementById(`row${indexRow}column${index}`)
     actualColumn.className += ` ${element.classList}`
     index++
   })
