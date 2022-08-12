@@ -5,14 +5,14 @@
 }
 
 .letter-yellow {
-    color: #c79c2e;
+    background-color: #c79c2e;
 }
 
 .letter-green {
-    color: #51b36e;
+    background-color: #51b36e;
 }
 .letter-red {
-    color: #943e3c;
+    background-color: #943e3c;
 }
 
 .app-container {
@@ -32,8 +32,11 @@
     box-sizing: border-box;
 }
 
-.tile-column {
+.tile-column-color {
     background-color: #f4f3f1;
+}
+
+.tile-column {
     color: #252525;
     height: 40px;
     width: 48px;
