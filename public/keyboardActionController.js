@@ -41,7 +41,7 @@ const handleEnter = async () => {
   changeTheSelectedRow(".tile-column", currentDesableRow, "disabled", "typing")
 
   const data = await doRequests({ 'method': 'POST', resource: '/word', data: attempt })
-  return data
+  showWordColor(data)
 }
 
 // Enter Button
