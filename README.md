@@ -1,5 +1,5 @@
 <h1 align="center">
-  <img src="references/palavrete-logotipo.png">
+  <img src="public/images/palavrete-logotipo.png">
   <p>Try to discovery the secret word!</p>
 </h1>
 
