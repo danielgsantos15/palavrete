@@ -12,9 +12,11 @@ export default class StartPalavrete {
     }
     hasClientWordOnDatabase () {
         const wordChecked = database.checkAtDatabase(this.word)
-        if (!wordChecked) {
-            return 'A palavra não existe'
+        if (wordChecked) {
+            return this.word
         }
-        return this.validatedWord(secretArray)
+        
+        return
+        // return this.validatedWord(secretArray)
     }
 }
