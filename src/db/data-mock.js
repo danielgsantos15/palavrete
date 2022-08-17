@@ -1,7 +1,7 @@
 import { v4 } from "uuid"
 // const wordBase = ["teste", "testa", "pasta", "sexta", "sabes", "viola", "vidas", "pasto"]
 const wordBase = new Map([
-  [v4(), "TESTE"],
+  [v4(), "TRECO"],
   [v4(), "TESTA"],
   [v4(), "PASTA"],
   [v4(), "PASTO"],

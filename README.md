@@ -3,6 +3,12 @@
   <p>Try to discovery the secret word!</p>
 </h1>
 
+
+## 👁‍🗨 Preview
+
+<img src="public/images/palavretePrint.jpg"><img src="public/images/palavrete-print.jpg">
+
+
 ## 📗 About
 
 **Palavrete** is a word game that the player have to discover a secret word.
@@ -21,6 +27,7 @@ $ npm start
 ````
 
 Open in browser: http://localhost:3000/
+
 
 ## 🎲 Rules
 
