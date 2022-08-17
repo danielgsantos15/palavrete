@@ -9,9 +9,9 @@ class DatabaseManager {
   checkAtDatabase(word) {
     let result = false
     data.forEach((dado) => {
-      if (dado == word) 
-        result = true
-    });
+      if (dado == word.join(''))
+      return result = true
+    })
     return result
   }
 }
