@@ -10,7 +10,8 @@ const doRequests = async (request) => {
       body: JSON.stringify(data),
       headers: {"Content-type": "application/json; charset=UTF-8"}
     })
-    return response.json()  
+    isValidWord(response.ok)
+    return response.json()
   } catch (error) {
     console.log(error)
   }
@@ -34,4 +35,18 @@ const moveToNextRow = () => {
     return
   }  
   currentRow++
+}
+
+// faz o post da palavra
+let data
+const doRequestToDatabase = async () => {
+  data = await doRequests({ 'method': 'POST', resource: '/word', data: attempt })
+}
+
+// checa se a palavra existe
+const isValidWord = (isValidWord) => {
+  if (!isValidWord) {
+    return console.log('A palavra digitada não existe')
+  }
+  goToNextRound()
 }
