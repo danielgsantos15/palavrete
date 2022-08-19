@@ -28,12 +28,17 @@ const showBackspaceButton = () => {
   backspaceAndEnterRow.append(backspaceButton)
 }
 
-let index = 0
-const handleEnter = async () => {
+// checa entrada da palavra
+const checkWordInput = async () => {
   if (currentColumn != columns) {
     return
-  }
+  } 
+  doRequestToDatabase()
+}
 
+let index = 0
+// avança para a próxima rodada
+const goToNextRound = () => {
   changeTheSelectedRow(".typing", document, "typing", "disabled")
   currentColumn = 0
   moveToNextRow()
@@ -41,7 +46,6 @@ const handleEnter = async () => {
   const currentDesableRow = document.querySelector("#row" + currentRow)
   changeTheSelectedRow(".tile-column", currentDesableRow, "disabled", "typing")
 
-  const data = await doRequests({ 'method': 'POST', resource: '/word', data: attempt })
   clearCurrentArrayWord()
   showWordColor(data, index)
   index++
@@ -52,6 +56,6 @@ const showEnterButton = () => {
   const enterButton = document.createElement("button")
   enterButton.setAttribute("id", "enterButton")
   enterButton.textContent = "enter"
-  enterButton.addEventListener("click", handleEnter)
+  enterButton.addEventListener("click", checkWordInput)
   backspaceAndEnterRow.append(enterButton)
 }
