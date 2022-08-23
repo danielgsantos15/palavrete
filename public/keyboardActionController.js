@@ -41,16 +41,24 @@ const checkWordInput = async () => {
 let index = 0
 // Go to next round
 const goToNextRound = (data) => {
+  showWordColor(data, index)
+  arrayData = []
+  data.forEach(dataClass => {
+    arrayData.push(dataClass.classList)
+  });
+  if (!arrayData.includes('letter-red') && !arrayData.includes('letter-yellow')) {
+    return checkVictoryStatus(true)
+  }
   changeTheSelectedRow(".typing", document, "typing", "disabled")
   currentColumn = 0
-  moveToNextRow()
+  checkVictoryStatus()
 
   const currentDesableRow = document.querySelector("#row" + currentRow)
   changeTheSelectedRow(".tile-column", currentDesableRow, "disabled", "typing")
 
   clearCurrentArrayWord()
-  showWordColor(data, index)
   index++
+
 }
 
 // Enter Button

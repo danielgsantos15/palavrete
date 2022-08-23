@@ -29,12 +29,11 @@ const clearCurrentArrayWord = () => {
   attempt = []
 }
 
-// Go to next row
-const moveToNextRow = () => {
-  if (currentRow == 5) {
-    document.getElementById('enterButton').disabled = true
-    document.getElementById('backspaceButton').disabled = true
-    validCharacters = []
+// Verify if the player won the game
+const checkVictoryStatus = (playerWin) => {
+  if (currentRow == 5 || playerWin) {
+    disableKeyboard()
+    gameOverMessage(playerWin)
     return
   }  
   currentRow++
@@ -53,4 +52,21 @@ const isValidWord = () => {
     return 
   }
   goToNextRound()
+}
+
+// show game over message
+const gameOverMessage = (playerWin) => {
+  if (playerWin) {
+    return console.log('Você venceu!')
+  }
+  return console.log('Fim de jogo')
+}
+
+// Disable keyboard in the end of the game
+const disableKeyboard = () => {
+  let keyboard = document.getElementById('keyboardContainer').getElementsByTagName('*')
+  for (let keys of keyboard) {
+    keys.disabled = true
+  }
+  validCharacters = []
 }
