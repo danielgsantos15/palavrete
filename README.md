@@ -6,7 +6,7 @@
 
 ## 👁‍🗨 Preview
 
-<img src="public/images/palavretePrint.jpg"><img src="public/images/palavrete-print.jpg">
+<img src="public/images/palavretePrint.JPG"><img src="public/images/palavrete-print.JPG">
 
 
 ## 📗 About
