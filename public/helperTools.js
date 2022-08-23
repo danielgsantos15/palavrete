@@ -1,4 +1,4 @@
-// Requests
+// Do post on server
 const doRequests = async (request) => {
   try {
     const data = {
@@ -25,10 +25,12 @@ const changeTheSelectedRow = (tipoDeSeletor, elementDOMToWork, actualStatus, sta
   }
 }
 
+// Remove the past word from array
 const clearCurrentArrayWord = () => {
   attempt = []
 }
 
+// Go to next row
 const moveToNextRow = () => {
   if (currentRow == 5) {
     document.getElementById('enterButton').disabled = true
@@ -37,16 +39,17 @@ const moveToNextRow = () => {
   currentRow++
 }
 
-// faz o post da palavra
+// Do POST of the word
 let data
 const doRequestToDatabase = async () => {
   data = await doRequests({ 'method': 'POST', resource: '/word', data: attempt })
 }
 
-// checa se a palavra existe
+// Check if the wrote word exists in database
 const isValidWord = (isValidWord) => {
   if (!isValidWord) {
-    return console.log('A palavra digitada não existe')
+    console.log('A palavra digitada não existe')
+    return 
   }
   goToNextRound()
 }
