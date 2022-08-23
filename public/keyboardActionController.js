@@ -1,3 +1,4 @@
+// Insert letters in the current row
 const writingWord = (key) => {
   if (currentColumn != columns) {
     const currentTile = document.querySelector(
@@ -28,7 +29,7 @@ const showBackspaceButton = () => {
   backspaceAndEnterRow.append(backspaceButton)
 }
 
-// checa entrada da palavra
+// Check word input
 const checkWordInput = async () => {
   if (currentColumn != columns) {
     return
@@ -37,7 +38,7 @@ const checkWordInput = async () => {
 }
 
 let index = 0
-// avança para a próxima rodada
+// Go to next round
 const goToNextRound = () => {
   changeTheSelectedRow(".typing", document, "typing", "disabled")
   currentColumn = 0
