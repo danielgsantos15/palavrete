@@ -9,6 +9,10 @@ app.use(express.static('public'));
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
 
+app.get('/word', (req, res) => {
+  res.json({data:  "olá"})
+})
+
 app.post('/word', (req, res, next) => {
   const { word } = req.body
   const start = new StartPalavrete(word)
