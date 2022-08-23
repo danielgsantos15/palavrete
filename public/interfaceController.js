@@ -32,13 +32,17 @@ const showWordColor = (validatedWord, indexRow) => {
 
 // Keyboard
 const showKeyboard = () => {
-  const keyboardFirstRow = document.querySelector("#keyboardFirstRow")
-  const keyboardSecondRow = document.querySelector("#keyboardSecondRow")
-  const keyboardThirdRow = document.querySelector("#keyboardThirdRow")
+  const keyboardQuerySelector = {
+    keyboardFirstRow: document.querySelector("#keyboardFirstRow"),
+    keyboardSecondRow: document.querySelector("#keyboardSecondRow"),
+    keyboardThirdRow: document.querySelector("#keyboardThirdRow")
+  }
 
-  const keyFirstRow = ["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P"]
-  const keySecondRow = ["A", "S", "D", "F", "G", "H", "J", "K", "L"]
-  const keyThirdRow = ["Z", "X", "C", "V", "B", "N", "M"]
+  const keyboardRows = {
+    keyFirstRow: ["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P"],
+    keySecondRow: ["A", "S", "D", "F", "G", "H", "J", "K", "L"],
+    keyThirdRow: ["Z", "X", "C", "V", "B", "N", "M"]
+  }
 
   const createKeyboardRow = (keys, keyboardRow) => {
     keys.forEach((key) => {
@@ -52,7 +56,7 @@ const showKeyboard = () => {
     })
   }
 
-  createKeyboardRow(keyFirstRow, keyboardFirstRow)
-  createKeyboardRow(keySecondRow, keyboardSecondRow)
-  createKeyboardRow(keyThirdRow, keyboardThirdRow)
+  createKeyboardRow(keyboardRows.keyFirstRow, keyboardQuerySelector.keyboardFirstRow)
+  createKeyboardRow(keyboardRows.keySecondRow, keyboardQuerySelector.keyboardSecondRow)
+  createKeyboardRow(keyboardRows.keyThirdRow, keyboardQuerySelector.keyboardThirdRow)
 }
