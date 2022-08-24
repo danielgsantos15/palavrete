@@ -33,7 +33,7 @@ const clearCurrentArrayWord = () => {
 const checkVictoryStatus = (playerWin) => {
   if (currentRow == 5 || playerWin) {
     disableKeyboard()
-    gameOverMessage(playerWin)
+    showGameOverModal(playerWin)
     return
   }  
   currentRow++
@@ -52,14 +52,6 @@ const isValidWord = () => {
     return 
   }
   goToNextRound()
-}
-
-// show game over message
-const gameOverMessage = (playerWin) => {
-  if (playerWin) {
-    return console.log('Você venceu!')
-  }
-  return console.log('Fim de jogo')
 }
 
 // Disable keyboard in the end of the game
