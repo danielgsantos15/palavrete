@@ -87,12 +87,12 @@
 }
 
 .keyboard-row-container.notAlphabetic {
-    width:100%
+    width: 100%
 }
 
 .keyboard-row-container:not(.notAlphabetic) button {
-    width: 8%;
-    height: 40px;
+    width: 35px;
+    height: 35px;
     border-radius: 0.25rem;
     margin-right: 0.25rem;
     border: 1px solid #252525;
