@@ -60,3 +60,33 @@ const showKeyboard = () => {
   createKeyboardRow(keyboardRows.keySecondRow, keyboardQuerySelector.keyboardSecondRow)
   createKeyboardRow(keyboardRows.keyThirdRow, keyboardQuerySelector.keyboardThirdRow)
 }
+
+// show game over message
+const showGameOverModal = (gameResult) => {
+  const modal = document.querySelector('.modal')
+  modal.style.display = 'block'
+
+  const gameOverMessage = document.createElement('h2')
+  gameOverMessage.textContent = gameResult ? 'VOCÊ VENCEU!' : 'VOCÊ PERDEU!'
+  gameOverMessage.style = gameResult ? 'color: #51b36e;' : 'color: #943e3c;'
+
+  const secretWord = document.createElement('p')
+  secretWord.textContent = `A palavra era: _____`
+
+  const gameStatus = document.createElement('p')
+  gameStatus.textContent = `Você usou ${currentRow + 1} de ${rows} tentativas`
+
+  const playAgainButton = document.createElement('button')
+  playAgainButton.textContent = 'Jogar Novamente'
+  playAgainButton.setAttribute('id', 'playAgainBtn')
+  playAgainButton.style = 'margin: 10px'
+  playAgainButton.addEventListener('click', () => {console.log('jogar novamente')})
+
+  const modalButton = document.createElement('button')
+  modalButton.textContent = 'Fechar'
+  modalButton.setAttribute('id', 'modalBtn')
+  modalButton.style = 'margin: 10px'
+  modalButton.addEventListener('click', () => {modal.style.display = 'none'})
+
+  modalContent.append(gameOverMessage, secretWord, gameStatus, playAgainButton, modalButton)
+}
