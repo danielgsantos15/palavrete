@@ -80,7 +80,7 @@ const showGameOverModal = (gameResult) => {
   playAgainButton.textContent = 'Jogar Novamente'
   playAgainButton.setAttribute('id', 'playAgainBtn')
   playAgainButton.style = 'margin: 10px'
-  playAgainButton.addEventListener('click', () => {console.log('jogar novamente')})
+  playAgainButton.addEventListener('click', () => {modal.style.display = 'none', newGame()})
 
   const modalButton = document.createElement('button')
   modalButton.textContent = 'Fechar'
@@ -89,4 +89,15 @@ const showGameOverModal = (gameResult) => {
   modalButton.addEventListener('click', () => {modal.style.display = 'none'})
 
   modalContent.append(gameOverMessage, secretWord, gameStatus, playAgainButton, modalButton)
+}
+
+const newGame = () => {
+  currentRow = 0
+  currentColumn = 0
+  attempt = []
+  console.log('jogar novamente')
+}
+
+const clearTable = () => {
+
 }
