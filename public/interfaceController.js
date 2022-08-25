@@ -1,3 +1,4 @@
+// Show game table
 const showTable = () => {
   for (let rowIndex = 0; rowIndex < rows; rowIndex++) {
     guesses[rowIndex] = new Array(columns)
@@ -20,6 +21,7 @@ const showTable = () => {
   }
 }
 
+// Show color letters accord the hits
 const showWordColor = (validatedWord, indexRow) => {
   let index = 0
   document.getElementById(`row${indexRow}`)
@@ -30,7 +32,7 @@ const showWordColor = (validatedWord, indexRow) => {
   })
 }
 
-// Keyboard
+// Show virtual keyboard
 const showKeyboard = () => {
   const keyboardQuerySelector = {
     keyboardFirstRow: document.querySelector("#keyboardFirstRow"),
@@ -61,7 +63,7 @@ const showKeyboard = () => {
   createKeyboardRow(keyboardRows.keyThirdRow, keyboardQuerySelector.keyboardThirdRow)
 }
 
-// show game over message
+// Show game over modal message
 const showGameOverModal = (gameResult) => {
   const modal = document.querySelector('.modal')
   modal.style.display = 'block'
@@ -89,15 +91,4 @@ const showGameOverModal = (gameResult) => {
   modalButton.addEventListener('click', () => {modal.style.display = 'none'})
 
   modalContent.append(gameOverMessage, secretWord, gameStatus, playAgainButton, modalButton)
-}
-
-const newGame = () => {
-  currentRow = 0
-  currentColumn = 0
-  attempt = []
-  console.log('jogar novamente')
-}
-
-const clearTable = () => {
-
 }

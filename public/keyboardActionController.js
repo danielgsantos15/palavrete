@@ -10,7 +10,7 @@ const writingWord = (key) => {
   } return
 }
 
-// Backspace Button
+// Backspace button action
 const handleBackspace = (key) => {
   if (currentColumn === 0) {
     return
@@ -21,7 +21,8 @@ const handleBackspace = (key) => {
   const tile = document.querySelector("#row" + currentRow + "column" + currentColumn)
   tile.textContent = ""
 }
-  
+
+// Show bacspace button
 const showBackspaceButton = () => {
   const backspaceButton = document.createElement("button")
   backspaceButton.setAttribute("id", "backspaceButton")
@@ -30,16 +31,25 @@ const showBackspaceButton = () => {
   backspaceAndEnterRow.append(backspaceButton)
 }
 
-// Check word input
-const checkWordInput = async () => {
+// Show enter button
+const showEnterButton = () => {
+  const enterButton = document.createElement("button")
+  enterButton.setAttribute("id", "enterButton")
+  enterButton.textContent = "enter"
+  enterButton.addEventListener("click", checkWordInput)
+  backspaceAndEnterRow.append(enterButton)
+}
+
+// Check if word input has all letters inserted
+const checkWordInput = () => {
   if (currentColumn != columns) {
     return
   } 
   doRequestToDatabase()
 }
 
-let index = 0
 // Go to next round
+let index = 0
 const goToNextRound = (data) => {
   showWordColor(data, index)
   arrayData = []
@@ -58,19 +68,9 @@ const goToNextRound = (data) => {
 
   clearCurrentArrayWord()
   index++
-
 }
 
-// Enter Button
-const showEnterButton = () => {
-  const enterButton = document.createElement("button")
-  enterButton.setAttribute("id", "enterButton")
-  enterButton.textContent = "enter"
-  enterButton.addEventListener("click", checkWordInput)
-  backspaceAndEnterRow.append(enterButton)
-}
-
-
+// Take letters from desktop keyboard
 document.onkeydown = (event) => {
   let key = event.code  
   if (!validCharacters.includes(key)) {
@@ -86,4 +86,20 @@ document.onkeydown = (event) => {
   }
 
   return handleBackspace()
+}
+
+// Start a new game
+const newGame = () => {
+  currentRow = 0
+  currentColumn = 0
+  attempt = []
+  enableKeyboard()
+  clearTable()
+  
+  console.log('jogar novamente')
+}
+
+// Clear table to start a new game
+const clearTable = () => {
+
 }

@@ -16,6 +16,7 @@ const doRequests = async (request) => {
   }
 }
 
+// Change the select row to next round
 const changeTheSelectedRow = (tipoDeSeletor, elementDOMToWork, actualStatus, statusToChange) => {
   let variavel = elementDOMToWork.querySelectorAll(tipoDeSeletor)
   for (let index = 0; index < variavel.length; index++) {
@@ -54,11 +55,19 @@ const isValidWord = () => {
   goToNextRound()
 }
 
-// Disable keyboard in the end of the game
+// Disable virtual keyboard in the end of the game
 const disableKeyboard = () => {
   let keyboard = document.getElementById('keyboardContainer').getElementsByTagName('*')
   for (let keys of keyboard) {
     keys.disabled = true
   }
   validCharacters = []
+}
+
+// Enable virtual keyboard to start a new game
+const enableKeyboard = () => {
+  let keyboard = document.getElementById('keyboardContainer').getElementsByTagName('*')
+  for (let keys of keyboard) {
+    keys.disabled = false
+  }
 }
