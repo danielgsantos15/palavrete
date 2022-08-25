@@ -54,7 +54,7 @@ const goToNextRound = (data) => {
 
 // Take letters from desktop keyboard
 document.onkeydown = (event) => {
-  let key = event.code  
+  let key = event.code
   if (!validCharacters.includes(key)) {
     return
   }
@@ -68,20 +68,4 @@ document.onkeydown = (event) => {
   }
 
   return handleBackspace()
-}
-
-// Start a new game
-const newGame = () => {
-  currentRow = 0
-  currentColumn = 0
-  attempt = []
-  enableKeyboard()
-  clearTable()
-  
-  console.log('jogar novamente')
-}
-
-// Clear table to start a new game
-const clearTable = () => {
-
 }
