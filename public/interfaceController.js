@@ -21,6 +21,24 @@ const showTable = () => {
   }
 }
 
+// Show bacspace button
+const showBackspaceButton = () => {
+  const backspaceButton = document.createElement("button")
+  backspaceButton.setAttribute("id", "backspaceButton")
+  backspaceButton.addEventListener("click", handleBackspace)
+  backspaceButton.textContent = "<"
+  backspaceAndEnterRow.append(backspaceButton)
+}
+
+// Show enter button
+const showEnterButton = () => {
+  const enterButton = document.createElement("button")
+  enterButton.setAttribute("id", "enterButton")
+  enterButton.textContent = "enter"
+  enterButton.addEventListener("click", checkWordInput)
+  backspaceAndEnterRow.append(enterButton)
+}
+
 // Show color letters accord the hits
 const showWordColor = (validatedWord, indexRow) => {
   let index = 0
