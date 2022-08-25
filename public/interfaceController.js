@@ -21,7 +21,7 @@ const showTable = () => {
   }
 }
 
-// Show bacspace button
+// Show virtual bacspace button
 const showBackspaceButton = () => {
   const backspaceButton = document.createElement("button")
   backspaceButton.setAttribute("id", "backspaceButton")
@@ -30,7 +30,7 @@ const showBackspaceButton = () => {
   backspaceAndEnterRow.append(backspaceButton)
 }
 
-// Show enter button
+// Show virtual enter button
 const showEnterButton = () => {
   const enterButton = document.createElement("button")
   enterButton.setAttribute("id", "enterButton")
@@ -83,6 +83,11 @@ const showKeyboard = () => {
 
 // Show game over modal message
 const showGameOverModal = (gameResult) => {
+  const modalCreate = document.createElement('div')
+  modalCreate.setAttribute('class', 'content')
+  modalCreate.setAttribute('id', 'modalContent')
+  modalCreate.style = 'display: block'
+
   const modal = document.querySelector('.modal')
   modal.style.display = 'block'
 
