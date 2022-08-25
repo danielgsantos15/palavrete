@@ -33,7 +33,8 @@ const clearCurrentArrayWord = () => {
 // Verify if the player won the game
 const checkVictoryStatus = (playerWin) => {
   if (currentRow == 5 || playerWin) {
-    disableKeyboard()
+    disableVirtualKeyboard()
+    disableDesktopKeyboard()
     showGameOverModal(playerWin)
     return
   }  
@@ -56,18 +57,95 @@ const isValidWord = () => {
 }
 
 // Disable virtual keyboard in the end of the game
-const disableKeyboard = () => {
+const disableVirtualKeyboard = () => {
   let keyboard = document.getElementById('keyboardContainer').getElementsByTagName('*')
   for (let keys of keyboard) {
     keys.disabled = true
   }
-  validCharacters = []
+}
+
+// Disable desktop keyboard in the end of the game
+const disableDesktopKeyboard = () => {
+  return validCharacters = []
+}
+
+// Start a new game
+const newGame = () => {
+  clearTable()
+  clearVariables()
+  clearGameOverModal()
+  enableVirtualKeyboard()
+  enableDesktopKeyboard(true)
 }
 
 // Enable virtual keyboard to start a new game
-const enableKeyboard = () => {
+const enableVirtualKeyboard = () => {
   let keyboard = document.getElementById('keyboardContainer').getElementsByTagName('*')
   for (let keys of keyboard) {
-    keys.disabled = false
+    keys.enabled = true
   }
+}
+
+// Enable desktop keyboard to start a new game
+const enableDesktopKeyboard = () => {
+  return validCharacters = [
+  "KeyQ",
+  "KeyW",
+  "KeyE",
+  "KeyR",
+  "KeyT",
+  "KeyY",
+  "KeyU",
+  "KeyI",
+  "KeyO",
+  "KeyP",
+  "KeyA",
+  "KeyS",
+  "KeyD",
+  "KeyF",
+  "KeyG",
+  "KeyH",
+  "KeyJ",
+  "KeyK",
+  "KeyL",
+  "KeyZ",
+  "KeyX",
+  "KeyC",
+  "KeyV",
+  "KeyB",
+  "KeyN",
+  "KeyM",
+  "Backspace",
+  "Enter",
+  "NumpadEnter"
+  ]
+}
+
+
+// Clear variables value to start a new game
+const clearVariables = () => {
+  index = 0
+  currentRow = 0
+  currentColumn = 0
+  attempt = []
+}
+
+// Clear table to start a new game
+const clearTable = () => {
+  for (let rowIndex = 0; rowIndex < rows; rowIndex++) {
+    document.getElementById(`row${rowIndex}`)
+
+    for (let columnIndex = 0; columnIndex < columns; columnIndex++) {
+      let tileColumn = document.getElementById(`row${rowIndex}column${columnIndex}`)
+      tileColumn.setAttribute('class', 'tile-column disabled')
+      tileColumn.textContent = ''
+    }
+  }
+  const currentDesableRow = document.querySelector("#row" + currentRow)
+  changeTheSelectedRow(".tile-column", currentDesableRow, "disabled", "typing")
+}
+
+// Clear game over modal statistics
+const  clearGameOverModal = () => {
+  document.getElementById('modalContent')
 }
