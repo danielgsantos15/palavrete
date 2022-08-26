@@ -1,5 +1,5 @@
-// Do post on server
-const doRequests = async (request) => {
+// Do POST request on server
+const doPostRequests = async (request) => {
   try {
     const data = {
       word: request.data
@@ -35,15 +35,16 @@ const checkVictoryStatus = (playerWin) => {
   if (currentRow == 5 || playerWin) {
     disableVirtualKeyboard()
     disableDesktopKeyboard()
-    showGameOverModal(playerWin)
+    doGetRequestToDatabase(playerWin)
+    
     return
   }  
   currentRow++
 }
 
-// Do POST of the word
+// Do POST request of the word
 const doRequestToDatabase = async () => {
-  let data = await doRequests({ 'method': 'POST', resource: '/word', data: attempt })
+  let data = await doPostRequests({ 'method': 'POST', resource: '/word', data: attempt })
   goToNextRound(data)
 }
 
@@ -121,7 +122,6 @@ const enableDesktopKeyboard = () => {
   ]
 }
 
-
 // Clear variables value to start a new game
 const clearVariables = () => {
   index = 0
@@ -150,5 +150,27 @@ const  clearGameOverModal = () => {
   let modalContent = document.getElementById('modalContent')
   while (modalContent.firstChild) {
     modalContent.removeChild(modalContent.firstChild)
+  }
+}
+
+// Do GET request of word
+const doGetRequestToDatabase = async (playerWin) => {
+  let secretWord = []
+  secretWord = await doGetRequest({ 'method': 'GET', resource: '/word'})
+  return showGameOverModal(playerWin, secretWord.join(''))
+}
+
+// do GET request on server
+const doGetRequest = async (request) => {
+  try {
+    const url = `http://localhost:3000${request.resource}`
+    const response = await fetch(url, {
+      method: request.method,
+      headers: JSON.stringify(),
+    })
+    const data = await response.json()
+    return data
+  } catch (error) {
+    console.log(error)
   }
 }

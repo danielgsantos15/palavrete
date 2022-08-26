@@ -10,7 +10,9 @@ app.use(express.json())
 app.use(express.urlencoded({extended: true}))
 
 app.get('/word', (req, res) => {
-  res.json({data:  "olá"})
+  const start = new StartPalavrete()
+  let secretWord = start.getSecretWordFromDatabase()
+  return res.send(secretWord)
 })
 
 app.post('/word', (req, res, next) => {
