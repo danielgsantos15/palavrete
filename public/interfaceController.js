@@ -82,7 +82,7 @@ const showKeyboard = () => {
 }
 
 // Show game over modal message
-const showGameOverModal = (gameResult) => {
+const showGameOverModal = (gameResult, secretWord) => {
   const modal = document.querySelector('.modal')
   modal.style.display = 'block'
 
@@ -95,8 +95,9 @@ const showGameOverModal = (gameResult) => {
   gameOverMessage.textContent = gameResult ? 'VOCÊ VENCEU!' : 'VOCÊ PERDEU!'
   gameOverMessage.style = gameResult ? 'color: #51b36e;' : 'color: #943e3c;'
 
-  const secretWord = document.createElement('p')
-  secretWord.textContent = `A palavra era: _____`
+  const showSecretWord = document.createElement('p')
+  showSecretWord.setAttribute('class', 'showSecretWord')
+  showSecretWord.textContent = `A palavra era: ${secretWord}`
 
   const gameStatus = document.createElement('p')
   gameStatus.textContent = `Você usou ${currentRow + 1} de ${rows} tentativas`
@@ -113,5 +114,5 @@ const showGameOverModal = (gameResult) => {
   modalButton.style = 'margin: 10px'
   modalButton.addEventListener('click', () => {modal.style.display = 'none'})
 
-  modalContent.append(gameOverMessage, secretWord, gameStatus, playAgainButton, modalButton)
+  modalContent.append(gameOverMessage, showSecretWord, gameStatus, playAgainButton, modalButton)
 }
