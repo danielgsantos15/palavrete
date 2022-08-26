@@ -44,17 +44,17 @@ const checkVictoryStatus = (playerWin) => {
 
 // Do POST request of the word
 const doRequestToDatabase = async () => {
-  let data = await doPostRequests({ 'method': 'POST', resource: '/word', data: attempt })
-  goToNextRound(data)
+  try {
+    let data = await doPostRequests({ 'method': 'POST', resource: '/word', data: attempt })
+    goToNextRound(data)
+  } catch (error) {
+    isValidWord()
+  }
 }
 
-// Check if the wrote word exists in database
+// Is called if the wrote word exists in database
 const isValidWord = () => {
-  if (!isValidWord) {
-    console.log('A palavra digitada não existe')
-    return 
-  }
-  goToNextRound()
+    return console.log('Palavra não encontrada')
 }
 
 // Disable virtual keyboard in the end of the game

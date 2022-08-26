@@ -20,8 +20,7 @@ app.post('/word', (req, res, next) => {
   const start = new StartPalavrete(word)
   let secretWord = start.getSecretWordFromDatabase()
   if (!start.hasClientWordOnDatabase()) {
-    res.status(404)
-    next()
+    return res.sendStatus(404)
   }
   const validatedArray = lettervalidator.compareWordsToClassifyTheLetterPosition(word, secretWord)
   res.send(validatedArray)
