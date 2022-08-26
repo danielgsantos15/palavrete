@@ -83,13 +83,13 @@ const showKeyboard = () => {
 
 // Show game over modal message
 const showGameOverModal = (gameResult) => {
+  const modal = document.querySelector('.modal')
+  modal.style.display = 'block'
+
   const modalCreate = document.createElement('div')
   modalCreate.setAttribute('class', 'content')
   modalCreate.setAttribute('id', 'modalContent')
   modalCreate.style = 'display: block'
-
-  const modal = document.querySelector('.modal')
-  modal.style.display = 'block'
 
   const gameOverMessage = document.createElement('h2')
   gameOverMessage.textContent = gameResult ? 'VOCÊ VENCEU!' : 'VOCÊ PERDEU!'

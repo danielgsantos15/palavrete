@@ -82,7 +82,7 @@ const newGame = () => {
 const enableVirtualKeyboard = () => {
   let keyboard = document.getElementById('keyboardContainer').getElementsByTagName('*')
   for (let keys of keyboard) {
-    keys.enabled = true
+    keys.disabled = false
   }
 }
 
@@ -141,11 +141,14 @@ const clearTable = () => {
       tileColumn.textContent = ''
     }
   }
-  const currentDesableRow = document.querySelector("#row" + currentRow)
+  const currentDesableRow = document.querySelector("#row0")
   changeTheSelectedRow(".tile-column", currentDesableRow, "disabled", "typing")
 }
 
 // Clear game over modal statistics
 const  clearGameOverModal = () => {
-  document.getElementById('modalContent')
+  let modalContent = document.getElementById('modalContent')
+  while (modalContent.firstChild) {
+    modalContent.removeChild(modalContent.firstChild)
+  }
 }
