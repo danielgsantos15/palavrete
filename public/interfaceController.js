@@ -26,7 +26,7 @@ const showBackspaceButton = () => {
   const backspaceButton = document.createElement("button")
   backspaceButton.setAttribute("id", "backspaceButton")
   backspaceButton.addEventListener("click", handleBackspace)
-  backspaceButton.textContent = "<"
+  backspaceButton.textContent = "<---"
   backspaceAndEnterRow.append(backspaceButton)
 }
 
@@ -34,7 +34,7 @@ const showBackspaceButton = () => {
 const showEnterButton = () => {
   const enterButton = document.createElement("button")
   enterButton.setAttribute("id", "enterButton")
-  enterButton.textContent = "enter"
+  enterButton.textContent = "ENTER"
   enterButton.addEventListener("click", checkWordInput)
   backspaceAndEnterRow.append(enterButton)
 }
@@ -69,6 +69,7 @@ const showKeyboard = () => {
       let buttonElement = document.createElement("button")
       buttonElement.textContent = key
       buttonElement.setAttribute("id", key)
+      buttonElement.style = 'background-color: #fafafafa'
       buttonElement.addEventListener("click", () => {
         writingWord(key)
       })
@@ -91,7 +92,7 @@ const showGameOverModal = (gameResult, secretWord) => {
   modalCreate.setAttribute('id', 'modalContent')
   modalCreate.style = 'display: block'
 
-  const gameOverMessage = document.createElement('h2')
+  const gameOverMessage = document.createElement('h1')
   gameOverMessage.textContent = gameResult ? 'VOCÊ VENCEU!' : 'VOCÊ PERDEU!'
   gameOverMessage.style = gameResult ? 'color: #51b36e;' : 'color: #943e3c;'
 
@@ -103,16 +104,51 @@ const showGameOverModal = (gameResult, secretWord) => {
   gameStatus.textContent = `Você usou ${currentRow + 1} de ${rows} tentativas`
 
   const playAgainButton = document.createElement('button')
-  playAgainButton.textContent = 'Jogar Novamente'
-  playAgainButton.setAttribute('id', 'playAgainBtn')
-  playAgainButton.style = 'margin: 10px'
+  playAgainButton.textContent = 'JOGAR NOVAMENTE'
+  playAgainButton.setAttribute('class', 'play-again-btn')
   playAgainButton.addEventListener('click', () => {modal.style.display = 'none', newGame()})
 
   const modalButton = document.createElement('button')
-  modalButton.textContent = 'Fechar'
-  modalButton.setAttribute('id', 'modalBtn')
-  modalButton.style = 'margin: 10px'
+  modalButton.textContent = 'FECHAR'
+  modalButton.setAttribute('class', 'modal-btn')
   modalButton.addEventListener('click', () => {modal.style.display = 'none'})
 
   modalContent.append(gameOverMessage, showSecretWord, gameStatus, playAgainButton, modalButton)
 }
+
+const rulesModal = () => {
+  const rulesModal = document.querySelector('.rules-modal')
+  rulesModal.style.display = 'block'
+
+  const modalCreate = document.createElement('div')
+  modalCreate.setAttribute('class', 'rules-content')
+  modalCreate.setAttribute('id', 'modalRulesContent')
+  modalCreate.style = 'display: block'
+  
+  const firstLine = document.createElement('p')
+  firstLine.setAttribute('class', 'rules-text')
+  firstLine.textContent = 'Descubra a palavra certa em 6 tentativa. Depois de cada tentativa você receberá dicas sobre cada letra digitada podendo ver seus erros e acertos. Os acentos não são considerados.'
+    
+  const correctLine = document.createElement('p')
+  correctLine.setAttribute('class', 'rules-text')
+  correctLine.textContent = 'A letra em verde está na palavra na posição correta.'
+  const correctRow = document.querySelector('.example-right-row')
+
+  const displacedLine = document.createElement('p')
+  displacedLine.setAttribute('class', 'rules-text')
+  displacedLine.textContent = 'A letra em amarelo está na palavra, porém na posição incorreta.'
+  const displacedRow = document.querySelector('.example-displaced-row')
+
+  const wrongLine = document.createElement('p')
+  wrongLine.setAttribute('class', 'rules-text')
+  wrongLine.textContent = 'A letra em vermelho não está na palavra.'
+  const wrongRow = document.querySelector('.example-wrong-row')
+  
+  const closeModalButton = document.createElement('button')
+  closeModalButton.textContent = 'FECHAR'
+  closeModalButton.setAttribute('class', 'close-modal-btn')
+  closeModalButton.addEventListener('click', () => {rulesModal.style.display = 'none'})
+  
+  modalRulesContent.append(firstLine, correctLine, correctRow, displacedLine, displacedRow, wrongLine, wrongRow, closeModalButton)
+}
+rulesModal()
