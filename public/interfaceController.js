@@ -127,7 +127,7 @@ const rulesModal = () => {
   
   const firstLine = document.createElement('p')
   firstLine.setAttribute('class', 'rules-text')
-  firstLine.textContent = 'Descubra a palavra certa em 6 tentativa. Depois de cada tentativa você receberá dicas sobre cada letra digitada podendo ver seus erros e acertos. Os acentos não são considerados.'
+  firstLine.textContent = 'Descubra a palavra certa em 6 tentativas. Depois de cada tentativa todas as letras ficarão destacadas em cores de acordo com a proximidade da palavra oculta, dando dicas para a próxima tentativa. Acentos não são considerados.'
     
   const correctLine = document.createElement('p')
   correctLine.setAttribute('class', 'rules-text')
@@ -145,7 +145,7 @@ const rulesModal = () => {
   const wrongRow = document.querySelector('.example-wrong-row')
   
   const closeModalButton = document.createElement('button')
-  closeModalButton.textContent = 'FECHAR'
+  closeModalButton.textContent = 'VAMOS LÁ!'
   closeModalButton.setAttribute('class', 'close-modal-btn')
   closeModalButton.addEventListener('click', () => {rulesModal.style.display = 'none'})
   
