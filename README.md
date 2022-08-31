@@ -1,12 +1,12 @@
 <h1 align="center">
-  <img src="public/images/palavrete-logotipo.png">
+  <img src="public/images/palavrete-logotype.png">
   <p>Try to discovery the secret word!</p>
 </h1>
 
 
 ## 👁‍🗨 Preview
 
-<img src="public/images/palavretePrint.JPG"><img src="public/images/palavrete-print.JPG">
+<img src="public/images/palavrete-rules.png"><img src="public/images/palavrete-table.png">
 
 
 ## 📗 About
