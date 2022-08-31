@@ -5,8 +5,11 @@
 
 
 ## 👁‍🗨 Preview
+## Rules
+<img src="public/images/palavrete-rules.png"><br>
 
-<img src="public/images/palavrete-rules.png"><img src="public/images/palavrete-table.png">
+## Game table
+<img src="public/images/palavrete-table.png">
 
 
 ## 📗 About
