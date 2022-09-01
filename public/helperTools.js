@@ -54,7 +54,8 @@ const doRequestToDatabase = async () => {
 
 // Is called if the wrote word exists in database
 const isValidWord = () => {
-    return console.log('Palavra não encontrada')
+  window.alert(`Desculpe, ainda não temos essa palavra em nosso banco de palavras`)
+  return console.log('Palavra não encontrada')
 }
 
 // Disable virtual keyboard in the end of the game
