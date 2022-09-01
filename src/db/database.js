@@ -1,9 +1,14 @@
 import data from './data-mock.js'
+import GenerateWordManager from './secret-word.js'
 
-class DatabaseManager {
+const secret = new GenerateWordManager()
+
+export default class DatabaseManager {
   getWord() {
-    let word = data.values()
-    return word.next().value
+    // let word = data.values()
+    let word = secret
+    console.log(word)
+    return word
   }
 
   checkAtDatabase(word) {
@@ -14,6 +19,15 @@ class DatabaseManager {
     })
     return result
   }
+
+  getNewWord() {
+    let newWord = data
+    let nextWord = Math.floor(Math.random() * newWord.length)
+    console.log("nova", newWord[nextWord])
+    let newww = newWord[nextWord]
+    let teste = secret.generateNewWord()
+    console.log('oi', teste)
+    return newww
+  }
 }
 
-export default DatabaseManager

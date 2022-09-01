@@ -76,6 +76,7 @@ const newGame = () => {
   clearTable()
   clearVariables()
   clearGameOverModal()
+  randomNewSecretWord()
   enableVirtualKeyboard()
   enableDesktopKeyboard(true)
 }
@@ -170,6 +171,30 @@ const doGetRequest = async (request) => {
       headers: JSON.stringify(),
     })
     const data = await response.json()
+    return data
+  } catch (error) {
+    console.log(error)
+  }
+}
+  
+// Take a new secret word from word base
+const randomNewSecretWord = async () => {
+  let newSecretArray = []
+  newSecretArray = await doNewRequest({
+    'method': 'GET',
+    'resource': '/newWord'
+  })
+  return console.log('nova palavra', newSecretArray.next)
+}
+
+const doNewRequest = async (request) => {
+  try {
+    const url = `http://localhost:3000${request.resource}`
+    const response = await fetch(url, {
+      method: request.method,
+      headers: JSON.stringify()
+    })
+    const data = response.json()
     return data
   } catch (error) {
     console.log(error)

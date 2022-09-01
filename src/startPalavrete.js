@@ -19,4 +19,8 @@ export default class StartPalavrete {
         return
         // return this.validatedWord(secretArray)
     }
+    getNewSecretWordFromDatabase () {
+        const newSecretArray = Array.from(database.getNewWord())
+        return newSecretArray
+    }
 }

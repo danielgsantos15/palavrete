@@ -15,6 +15,12 @@ app.get('/word', (req, res) => {
   return res.send(secretWord)
 })
 
+app.get('/newWord', (req, res) => {
+  const start = new StartPalavrete()
+  let newSecretWord = start.getNewSecretWordFromDatabase()
+  return res.json({next: newSecretWord})
+})
+
 app.post('/word', (req, res, next) => {
   const { word } = req.body
   const start = new StartPalavrete(word)
