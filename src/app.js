@@ -17,11 +17,11 @@ app.get('/word', (req, res) => {
 
 app.get('/newWord', (req, res) => {
   const start = new StartPalavrete()
-  let newSecretWord = start.getNewSecretWordFromDatabase()
+  let newSecretWord = start.changeSecretWordFromDatabase()
   return res.json({next: newSecretWord})
 })
 
-app.post('/word', (req, res, next) => {
+app.post('/word', (req, res) => {
   const { word } = req.body
   const start = new StartPalavrete(word)
   let secretWord = start.getSecretWordFromDatabase()
