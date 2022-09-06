@@ -69,7 +69,6 @@ const showKeyboard = () => {
       let buttonElement = document.createElement("button")
       buttonElement.textContent = key
       buttonElement.setAttribute("id", key)
-      buttonElement.style = 'background-color: #fafafafa'
       buttonElement.addEventListener("click", () => {
         writingWord(key)
       })
@@ -80,6 +79,13 @@ const showKeyboard = () => {
   createKeyboardRow(keyboardRows.keyFirstRow, keyboardQuerySelector.keyboardFirstRow)
   createKeyboardRow(keyboardRows.keySecondRow, keyboardQuerySelector.keyboardSecondRow)
   createKeyboardRow(keyboardRows.keyThirdRow, keyboardQuerySelector.keyboardThirdRow)
+}
+
+const changeKeyboardColor = (data) => {
+  for (let letterIndex = 0; letterIndex < data.length; letterIndex++) {
+    let buttonElement = document.getElementById(data[letterIndex].letter)
+    buttonElement.setAttribute('class', data[letterIndex].classList)
+  }
 }
 
 // Show game over modal message
