@@ -34,10 +34,13 @@ const checkWordInput = () => {
 let index = 0
 const goToNextRound = (data) => {
   showWordColor(data, index)
+  changeKeyboardColor(data)
   arrayData = []
   data.forEach(dataClass => {
     arrayData.push(dataClass.classList)
   });
+  
+  // Check victory
   if (!arrayData.includes('letter-red') && !arrayData.includes('letter-yellow')) {
     return checkVictoryStatus(true)
   }
