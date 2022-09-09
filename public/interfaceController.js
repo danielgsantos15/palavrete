@@ -81,9 +81,13 @@ const showKeyboard = () => {
   createKeyboardRow(keyboardRows.keyThirdRow, keyboardQuerySelector.keyboardThirdRow)
 }
 
+// Change virtual keyboard color
 const changeKeyboardColor = (data) => {
   for (let letterIndex = 0; letterIndex < data.length; letterIndex++) {
     let buttonElement = document.getElementById(data[letterIndex].letter)
+    if (buttonElement.className == 'letter-green') {
+      continue
+    }
     buttonElement.setAttribute('class', data[letterIndex].classList)
   }
 }
