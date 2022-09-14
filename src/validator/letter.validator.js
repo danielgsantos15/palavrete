@@ -3,20 +3,48 @@ class LetterValidator {
     this.columns = columns
   }
   compareWordsToClassifyTheLetterPosition(clientArrayWord, secretArray) {
-  console.log(clientArrayWord, secretArray)
     let validatedWord = []
+    console.log(secretArray)
+
     for (let index = 0; index < this.columns; index++) {
-      if (secretArray[index] == clientArrayWord[index]) {
-        validatedWord.push({ letter: clientArrayWord[index], classList: 'letter-green' })
-        continue
-      } else if (secretArray.includes(clientArrayWord[index])) {
-        validatedWord.push({ letter: clientArrayWord[index], classList: 'letter-yellow' })
+      if (secretArray.includes(clientArrayWord[index])) {
+        pushGreenLetter(secretArray, validatedWord, clientArrayWord, index)
         continue
       }
-      validatedWord.push({ letter: clientArrayWord[index], classList: 'letter-red' })
+      pushRedLetter(validatedWord, clientArrayWord, index)
     }
+    // pushYellowLetter(secretArray, validatedWord, clientArrayWord)
     return validatedWord
   }
 }
+
+const pushGreenLetter = (secretArray, validatedWord, clientArrayWord, index) => {
+  let greenIndex = secretArray.indexOf(clientArrayWord[index])
+  secretArray[greenIndex] = '#'
+  validatedWord.push({ letter: clientArrayWord[index], classList: 'letter-green' })
+}
+
+const pushRedLetter = (validatedWord, clientArrayWord, index) => {
+  validatedWord.push({ letter: clientArrayWord[index], classList: 'letter-red' })
+}
+
+// const pushYellowLetter = (secretArray, validatedWord, clientArrayWord) => {
+//   for (let index = 0; index < secretArray.length; index++) {
+//     if (secretArray[index] != clientArrayWord[index]) {
+//       validatedWord.push({ letter: clientArrayWord[index], classList: 'letter-yellow' })
+//       continue
+//     }
+//   }
+// }
+
+  // let yellowIndex = secretArray.indexOf(clientArrayWord[index])
+  // secretArray[yellowIndex] = '*'
+  // validatedWord.push({ letter: clientArrayWord[index], classList: 'letter-yellow' })
+  // console.log('yellow')
+
+// else if (secretArray[index] == clientArrayWord[index]) {
+//   pushYellowLetter(secretArray, validatedWord, clientArrayWord, index)
+//   continue
+// }
 
 export default LetterValidator
