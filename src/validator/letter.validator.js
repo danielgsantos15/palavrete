@@ -13,7 +13,9 @@ class LetterValidator {
       }
       pushRedLetter(validatedWord, clientArrayWord, index)
     }
-    // pushYellowLetter(secretArray, validatedWord, clientArrayWord)
+    for (let index = 0; index < this.columns; index++) {
+      pushYellowLetter(secretArray, validatedWord, clientArrayWord, index)
+    }
     return validatedWord
   }
 }
@@ -28,14 +30,12 @@ const pushRedLetter = (validatedWord, clientArrayWord, index) => {
   validatedWord.push({ letter: clientArrayWord[index], classList: 'letter-red' })
 }
 
-// const pushYellowLetter = (secretArray, validatedWord, clientArrayWord) => {
-//   for (let index = 0; index < secretArray.length; index++) {
-//     if (secretArray[index] != clientArrayWord[index]) {
-//       validatedWord.push({ letter: clientArrayWord[index], classList: 'letter-yellow' })
-//       continue
-//     }
-//   }
-// }
+const pushYellowLetter = (secretArray, validatedWord, clientArrayWord, index) => {
+  if (validatedWord[index].classList == 'letter-green' && clientArrayWord.indexOf(clientArrayWord[index]) != secretArray.indexOf(clientArrayWord[index])) {
+    console.log(clientArrayWord.indexOf(clientArrayWord[index]), clientArrayWord[index])
+    validatedWord[index].classList = 'letter-yellow'
+  }
+}
 
   // let yellowIndex = secretArray.indexOf(clientArrayWord[index])
   // secretArray[yellowIndex] = '*'
