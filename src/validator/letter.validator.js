@@ -9,11 +9,11 @@ class LetterValidator {
 
     console.log(secretArray)
 
-    // loop para adicionar objetos aos arrays
+    pushRedLetter(validatedWord, clientArrayWord, this.columns)
+    visibleLettersToCompare(arrayToCompare, secretArray, this.columns)
+    
+    // loop para adicionar class e classList aos objetos dos arrays
     for (let index = 0; index < this.columns; index++) {
-      pushRedLetter(validatedWord, clientArrayWord, index)
-      visibleLettersToCompare(arrayToCompare, secretArray, index)
-
       // checa se cada letra em clientArrayWord exitem dentro do secretArray
       if (secretArray.includes(clientArrayWord[index])) {
         pushGreenLetter(arrayToCompare, secretArray, validatedWord, clientArrayWord, index)
@@ -33,13 +33,17 @@ class LetterValidator {
 }
 
 // cria objeto que adiciona letters e classList: 'letter-red' em todas as letras de validatedWord
-const pushRedLetter = (validatedWord, clientArrayWord, index) => {
-  validatedWord.push({ letter: clientArrayWord[index], classList: 'letter-red' })
+const pushRedLetter = (validatedWord, clientArrayWord, columns) => {
+  for (let index = 0; index < columns; index++) {
+    validatedWord.push({ letter: clientArrayWord[index], classList: 'letter-red' })
+  }
 }
 
 // cria objeto que adiciona secretLetter e status 'visible' em todas as letras de arrayToCompare
-const visibleLettersToCompare = (arrayToCompare, secretArray, index) => {
-  arrayToCompare.push({ secretLetter: secretArray[index], status: 'visible' })
+const visibleLettersToCompare = (arrayToCompare, secretArray, columns) => {
+  for (let index = 0; index < columns; index++) {
+    arrayToCompare.push({ secretLetter: secretArray[index], status: 'visible' })
+  }
 }
 
 // adiciona 'letter-green' nas letras que existem dentro do secretArray
@@ -50,12 +54,11 @@ const pushGreenLetter = (arrayToCompare, secretArray, validatedWord, clientArray
 // torna invisivel as letras que foram encontradas no secretArray para serem desconsideradas na validação das próximas
 const notVisibleLettersToCompare = (validatedWord, arrayToCompare, secretArray, index) => {
   let indexLetter = validatedWord[index].letter
-  // arrayToCompare[index].status = 'not-visible'
-  let list = arrayToCompare.filter(function(letra){
-    return (letra.secretLetter == indexLetter)
-  })
-  console.log(list.status = 'not-visible')
-  // console.log(arrayToCompare[index].secretLetter, indexLetter)
+  let objectIndex = arrayToCompare.findIndex(i => i.secretLetter === indexLetter && i.status === 'visible')
+  if (arrayToCompare[objectIndex] === undefined ) {
+    return
+  }
+  arrayToCompare[objectIndex].status = 'not-visible'
 }
 
 // adiciona 'letter-yellow' nas letras que estão na posição incorreta
@@ -67,7 +70,6 @@ const pushYellowLetter = (arrayToCompare, secretArray, validatedWord, clientArra
     return
   }
   validatedWord[index].classList = 'letter-yellow'
-  // arrayToCompare[index].status = 'not-visible'
 }
 
 export default LetterValidator
