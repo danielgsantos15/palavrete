@@ -86,6 +86,9 @@ const enableVirtualKeyboard = () => {
   let keyboard = document.getElementById('keyboardContainer').getElementsByTagName('*')
   for (let keys of keyboard) {
     keys.disabled = false
+    if (keys.classList.value === 'letter-green', 'letter-red', 'letter-yellow') {
+      keys.classList.remove('letter-green', 'letter-red', 'letter-yellow')
+    }
   }
 }
 
