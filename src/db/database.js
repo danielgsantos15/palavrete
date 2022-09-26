@@ -1,9 +1,13 @@
 import data from './data-mock.js'
 import secretWord from './secret-word.js'
+import { randomNewWord } from './secret-word.js'
+import { chooseRandomWord } from './secret-word.js'
+
+let word = secretWord
+console.log('global', word)
 
 export default class DatabaseManager {
   getWord() {
-    let word = secretWord
     return word
     // let word = data.values()
     // return word.next().value
@@ -19,14 +23,9 @@ export default class DatabaseManager {
   }
 
   changeSecretWord() {
-    console.log(secretWord)
+    let result = randomNewWord()
+    console.log('database', secretWord, result)
     return secretWord
-    // let word = secretWord.values()
-    // return word.next().value
-    // // let newWord = data
-    // let newWord = secretWord.generateNewWord()
-    // let nextWord = Math.floor(Math.random() * newWord.length)
-    // console.log(newWord[nextWord])
-    // return newWord[nextWord]
   }
+    word = []
 }
