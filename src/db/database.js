@@ -1,31 +1,49 @@
 import data from './data-mock.js'
-import secretWord from './secret-word.js'
-import { randomNewWord } from './secret-word.js'
-import { chooseRandomWord } from './secret-word.js'
+import fs from 'fs'
 
-let word = secretWord
-console.log('global', word)
+let secretWord = []
+let words = []
+
+// Choose a random word of words array and push to secretWord
+const chooseRandomWord = () => {
+  let base = words[Math.floor(Math.random() * words.length)]
+  for (let letter in base) {
+    secretWord.push(base[letter])
+  }
+  return secretWord
+}
+
+// clear secretWord to add new random word
+const clearSecretWordArray = () => {
+  secretWord = []
+}
+
+// read words base file and put words in words array
+const readWordsFile = () => {
+  let wordsBuffer = fs.readFileSync('./src/db/words.txt', { encoding: 'utf-8' })
+  words = wordsBuffer.split('\r\n')
+  chooseRandomWord()
+}
+
+readWordsFile()
 
 export default class DatabaseManager {
   getWord() {
-    return word
-    // let word = data.values()
-    // return word.next().value
+    return secretWord
   }
 
-  checkAtDatabase(word) {
+  checkAtDatabase() {
     let result = false
     data.forEach((dado) => {
-      if (dado == word.join(''))
+      if (dado == secretWord.join(''))
       return result = true
     })
     return result
   }
 
   changeSecretWord() {
-    let result = randomNewWord()
-    console.log('database', secretWord, result)
+    clearSecretWordArray()
+    chooseRandomWord()
     return secretWord
   }
-    word = []
 }
