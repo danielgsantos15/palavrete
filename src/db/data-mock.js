@@ -3,7 +3,7 @@ import fs from 'fs'
 let wordBase = []
 
 // insert in wordBase words of words.txt
-fs.readFile('./src/db/words.txt', 'utf-8', (err, data) => {
+fs.readFile('./src/db/words-base.txt', 'utf-8', (err, data) => {
   if (err) {
     console.error(err)
   }
