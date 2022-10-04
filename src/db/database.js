@@ -20,7 +20,7 @@ const clearSecretWordArray = () => {
 
 // read words base file and put words in words array
 const readWordsFile = () => {
-  let wordsBuffer = fs.readFileSync('./src/db/words.txt', { encoding: 'utf-8' })
+  let wordsBuffer = fs.readFileSync('./src/db/game-words.txt', { encoding: 'utf-8' })
   words = wordsBuffer.split('\r\n')
   chooseRandomWord()
 }
