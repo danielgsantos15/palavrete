@@ -23,18 +23,14 @@ const showTable = () => {
 
 // Show virtual bacspace button
 const showBackspaceButton = () => {
-  const backspaceButton = document.createElement("button")
-  backspaceButton.setAttribute("id", "backspaceButton")
+  const backspaceButton = document.getElementById("backspaceButton")
   backspaceButton.addEventListener("click", handleBackspace)
-  backspaceButton.textContent = "<---"
   backspaceAndEnterRow.append(backspaceButton)
 }
 
 // Show virtual enter button
 const showEnterButton = () => {
-  const enterButton = document.createElement("button")
-  enterButton.setAttribute("id", "enterButton")
-  enterButton.textContent = "ENTER"
+  const enterButton = document.getElementById("enterButton")
   enterButton.addEventListener("click", checkWordInput)
   backspaceAndEnterRow.append(enterButton)
 }
