@@ -115,11 +115,11 @@ const showGameOverModal = (gameResult, secretWord) => {
   playAgainButton.addEventListener('click', () => {modal.style.display = 'none', newGame()})
 
   const modalButton = document.createElement('button')
-  modalButton.textContent = 'FECHAR'
   modalButton.setAttribute('class', 'modal-btn')
-  modalButton.addEventListener('click', () => {modal.style.display = 'none'})
+  
+  const socialMediaButtons = document.getElementById('socialMediaButtons')
 
-  modalContent.append(gameOverMessage, showSecretWord, gameStatus, playAgainButton, modalButton)
+  modalContent.append(gameOverMessage, showSecretWord, gameStatus, playAgainButton, socialMediaButtons)
 }
 
 const rulesModal = () => {
@@ -158,3 +158,8 @@ const rulesModal = () => {
   modalRulesContent.append(firstLine, correctLine, correctRow, displacedLine, displacedRow, wrongLine, wrongRow, closeModalButton)
 }
 rulesModal()
+
+const showRulesModal = () => {
+const rulesModal = document.querySelector('.rules-modal')
+rulesModal.style.display = 'block'
+}
