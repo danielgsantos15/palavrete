@@ -3,8 +3,8 @@ body {
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 
-.game-title {
-    margin-bottom: 20px;
+.header {
+    margin-bottom: 10px;
 }
 
 .letter-yellow {
