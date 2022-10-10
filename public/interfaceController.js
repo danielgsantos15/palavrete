@@ -117,9 +117,7 @@ const showGameOverModal = (gameResult, secretWord) => {
   const modalButton = document.createElement('button')
   modalButton.setAttribute('class', 'modal-btn')
   
-  const socialMediaButtons = document.getElementById('socialMediaButtons')
-
-  modalContent.append(gameOverMessage, showSecretWord, gameStatus, playAgainButton, socialMediaButtons)
+  modalContent.append(gameOverMessage, showSecretWord, gameStatus, playAgainButton)
 }
 
 const rulesModal = () => {
