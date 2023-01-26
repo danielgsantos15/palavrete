@@ -1,0 +1,8 @@
+FROM node:18
+WORKDIR /palavrete
+ARG PORT_BUILD=3031
+ENV PORT=$PORT_BUILD
+EXPOSE $PORT_BUILD
+COPY . .
+RUN npm install
+ENTRYPOINT npm start
